@@ -7,6 +7,7 @@ use App\Http\Controllers\register_ctrl;
 
 use App\Http\Controllers\ModulAjar_ctrl;
 use App\Http\Controllers\sekolah_ctrl;
+use App\Http\Controllers\profile_ctrl;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +35,7 @@ Route::post('/regisAction',[register_ctrl::class,'store']);
 // Main
 Route::get('/dashboard',function(){
     return view('dashboard');
-});
+})->middleware('auth');
 
 // Modul
 Route::get('/modul',[ModulAjar_ctrl::class,'index']);
@@ -59,3 +60,7 @@ Route::get('/sekolah/hapus/{id}',[sekolah_ctrl::class,'hapusSekolah']);
 // json realtime
 Route::get('/sa',[sekolah_ctrl::class,'sekolahAll']);
 Route::get('/ka/{id}',[sekolah_ctrl::class,'kelasAll']);
+
+// profile
+Route::get('/profil',[profile_ctrl::class,'index'])->middleware('auth.session');
+route::post('/profil/update',[profile_ctrl::class,'aksi_update']);
