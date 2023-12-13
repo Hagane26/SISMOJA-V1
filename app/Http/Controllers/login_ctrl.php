@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class login_ctrl extends Controller
 {
@@ -28,18 +29,14 @@ class login_ctrl extends Controller
      */
     public function store(Request $request)
     {
-        $email = $request->email;
-        $pass = $request->password;
-
-        $check = User::where('email',$email)->get()->count();
-
-        if ($check == 1){
-            $data = User::where('email',$email)->get()->first();
-            if(password_verify($pass,$data->password)){
-                return redirect("/dashboard");
-            }else{
-                return redirect()->back();
-            }
+        $data = array(
+            'email' => $request->email,
+            'password' => $request->password,
+        );
+        if(Auth::attempt($data)){
+            return redirect('/dashboard');
+        }else{
+            return redirect('/login');
         }
     }
 

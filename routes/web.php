@@ -24,7 +24,7 @@ Route::get('/', function () {
 });
 
 // Auth
-Route::get('/login',[login_ctrl::class,'index']);
+Route::get('/login',[login_ctrl::class,'index'])->name('login');
 Route::post('/loginAction',[login_ctrl::class,'store']);
 
 // Register
