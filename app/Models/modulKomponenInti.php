@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class modulKomponenInti extends Model
-{
+{   
+    protected $guarded = ['id'];
+
     use HasFactory;
 }

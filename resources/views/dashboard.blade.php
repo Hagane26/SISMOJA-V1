@@ -8,7 +8,7 @@
 @include('users.navbarUser')
 
   <div class="container-fluid mt-2">
-    <h1>{{ Auth::user()->nama }}</h1>
+    <center> <h3>Selamat datang {{ Auth::user()->nama }} Di {{ config('app.name') }}</h3></center>
   </div>
 
 @endsection

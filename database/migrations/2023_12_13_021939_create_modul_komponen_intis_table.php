@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('modul_komponen_intis', function (Blueprint $table) {
             $table->id();
+            $table->text('tujuan')->nullable();
+            $table->text('asesmen')->nullable();
+            $table->text('pemahaman')->nullable();
+            $table->text('pertanyaan')->nullable();
+            $table->text('kegiatan')->nullable();
+            $table->text('refleksi')->nullable();
+
             $table->timestamps();
         });
     }

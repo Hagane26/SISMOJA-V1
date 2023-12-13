@@ -8,7 +8,7 @@
 @include('users.navbarUser')
 
 <div class="position-absolute top-50 start-50 translate-middle">
-    <div class="card" style="width: 60rem">
+    <div class="card mt-5" style="width: 60rem">
         <div class="card-header">
             <h5 class="card-title">Detail Profil</h5>
         </div>
@@ -108,7 +108,7 @@
                         <!-- Password Confirm field -->
                         <div class="row g-4 align-items-center ms-5 mb-2">
                             <div class="col-1 me-4">
-                                <label for="inputPassword" class="col-form-label">Password</label>
+                                <label for="inputPassword" class="col-form-label">Password Old</label>
                             </div>
                             <div class="col-auto">
                                 <input type="password" id="inputPassword" name="password" class="form-control"
@@ -116,7 +116,7 @@
                             </div>
 
                             <div class="col-1 me-4">
-                                <label for="inputPasswordC" class="col-form-label">Confirm Password</label>
+                                <label for="inputPasswordC" class="col-form-label">Confirm Password Old</label>
                             </div>
                             <div class="col-auto">
                                 <input type="password" id="inputPasswordC" name="passwordC" class="form-control"

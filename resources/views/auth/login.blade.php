@@ -52,5 +52,7 @@
 
         </div>
     </div>
-
+    <div class="fixed-bottom ms-3 mb-3">
+        <a href="/register" class="btn btn-primary">Register</a>
+    </div>
 @endsection

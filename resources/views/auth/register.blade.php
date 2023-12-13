@@ -109,8 +109,10 @@
                             </div>
                         </form>
                     </div>
-
             </div>
         </div>
+    </div>
+    <div class="fixed-bottom ms-3 mb-3">
+        <a href="/login" class="btn btn-primary">Login</a>
     </div>
 @endsection

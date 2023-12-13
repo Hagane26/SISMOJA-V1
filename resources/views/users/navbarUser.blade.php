@@ -18,6 +18,10 @@
           <li class="nav-item">
             <a class="nav-link" href="/profil">Profile</a>
           </li>
+
+          <li class="nav-item">
+            <a class="nav-link bg-danger text-white ms-5" href="/logout">Logout</a>
+          </li>
         </ul>
       </div>
     </div>

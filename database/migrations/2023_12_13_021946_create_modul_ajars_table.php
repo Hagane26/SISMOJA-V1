@@ -16,7 +16,12 @@ return new class extends Migration
             $table->string('materi');
             $table->string('mata_pelajaran');
             $table->string('tahun_ajaran');
-            $table->string('alokasi_waktu');
+
+            $table->text('kompetensiAwal')->nullable();
+            $table->text('profilPelajarPancasila')->nullable();
+            $table->text('sarana')->nullable();
+            $table->text('target')->nullable();
+            $table->text('modelPembelajaran')->nullable();
 
             $table->unsignedBigInteger('users_id');
             $table->unsignedBigInteger('sekolah_id');
