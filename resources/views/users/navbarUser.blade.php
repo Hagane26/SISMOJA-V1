@@ -1,28 +1,14 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">{{ config('app.name') }}</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="/dashboard">Dashboard</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/modul">Modul Ajar</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/sekolah">Data Sekolah</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/profil">Profile</a>
-          </li>
+<div class="card sticky-top">
+    <img src="https://w7.pngwing.com/pngs/708/311/png-transparent-icon-logo-twitter-logo-twitter-logo-blue-social-media-area-thumbnail.png" class="card-img-top" alt="...">
+    <div class="btn-group-vertical" role="group">
 
-          <li class="nav-item">
-            <a class="nav-link bg-danger text-white ms-5" href="/logout">Logout</a>
-          </li>
-        </ul>
-      </div>
+        <div class="badge bg-primary text-wrap mt-3" style="width: 100%">
+            {{ config('app.name') }}
+        </div>
+
+        <a href="/modul/buat" class="btn btn-outline-success mt-5 mb-5"> <i class="bi bi-plus-circle"></i> Buat Modul </a>
+
+        <a href=""></a>
+
     </div>
-  </nav>
+</div>
