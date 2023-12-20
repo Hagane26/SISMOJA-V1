@@ -6,9 +6,11 @@
             {{ config('app.name') }}
         </div>
 
-        <a href="/modul/buat" class="btn btn-outline-success mt-5 mb-5"> <i class="bi bi-plus-circle"></i> Buat Modul </a>
+        <a href="/modul/buat" class="btn btn-outline-success mt-5 mb-3"> <i class="bi bi-plus-circle"></i> Buat Modul </a>
 
-        <a href=""></a>
+        <a href="/dashboard" class="btn btn-primary">Dashboard</a>
+        <a href="/dashboard" class="btn btn-primary">Modul Saya</a>
+        <a href="/profile" class="btn btn-primary">Profile</a>
 
     </div>
 </div>
