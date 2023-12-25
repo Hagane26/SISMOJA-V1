@@ -5,10 +5,19 @@
 @endsection
 
 @section('isi')
+
+    <div class="position-absolute top-0 end-0 mt-3 me-5">
+        @if ($errors->any())
+        <div class="alert alert-danger text-center" role="alert">
+            <i class="bi bi-info"></i> {{ $errors->first() }}
+        </div>
+        @endif
+    </div>
+
     <div class="position-absolute top-50 start-50 translate-middle">
         <div class="card" style="width: 30rem">
             <div class="card-header">
-                <h5 class="card-title">Login Sismoja</h5>
+                <h4 class="card-title text-center text-bold" style="font-weight: bold">Login {{ config('app.name') }}</h4>
             </div>
             <div class="card-body">
 
@@ -35,6 +44,7 @@
                                         aria-describedby="passwordHelpInline">
                                 </div>
                             </div>
+
                             <div class="col g-2 align-items-center ms-5 mb-2 mt-3">
                                 <center>
                                     <div class="row-auto mb-2">
@@ -53,6 +63,6 @@
         </div>
     </div>
     <div class="fixed-bottom ms-3 mb-3">
-        <a href="/register" class="btn btn-primary">Register</a>
+        <a href="/register" class="btn btn-success">Register</a>
     </div>
 @endsection

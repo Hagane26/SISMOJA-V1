@@ -20,7 +20,6 @@
     <script src="{{ asset('sidebars/sidebars.js') }}"></script>
 
     <script src="{{ asset('jquery/jquery-3-5-1.js') }}"></script>
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
 <body>

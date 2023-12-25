@@ -5,10 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\login_ctrl;
 use App\Http\Controllers\register_ctrl;
 
-use App\Http\Controllers\ModulAjar_ctrl;
-use App\Http\Controllers\sekolah_ctrl;
+
 use App\Http\Controllers\profile_ctrl;
-use App\Models\modulAjar;
+use App\Http\Controllers\ModulAjar_ctrl;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,40 +40,11 @@ Route::middleware('auth')->group(function(){
         return view('dashboard');
     })->middleware('auth');
 
-    // Modul
-    Route::get('/modul',[ModulAjar_ctrl::class,'index']);
-    Route::get('/modul/buat',[ModulAjar_ctrl::class,'buat']);
-    Route::post('/modul/buat/informasiumum',[ModulAjar_ctrl::class,'aksi_InformasiUmum']);
-
-    Route::get('/modul/buat/komponeninti',[ModulAjar_ctrl::class,'komponenInti']);
-    Route::post('/modul/buat/komponeninti',[ModulAjar_ctrl::class,'aksi_KomponenInti']);
-
-    Route::get('/modul/lihat/{id}',[ModulAjar_ctrl::class,'lihat']);
-    Route::get('/modul/hapus/{id}',[ModulAjar_ctrl::class,'hapus']);
-
-    // sekolah dan kelas index
-    Route::get('/sekolah',[sekolah_ctrl::class,'index']);
-    Route::get('/sekolah/kelas/{id}',[sekolah_ctrl::class,'kelas']);
-
-    // tambah sekolah
-    Route::get('/sekolah/tambah',[sekolah_ctrl::class,'tambahSekolah']);
-    Route::get('/sekolah/tambah/{id}',[sekolah_ctrl::class,'tambahKelas']);
-
-    // aksi tambah
-    Route::post('/sekolah/tambah/data',[sekolah_ctrl::class,'aksi_tambahSekolah']);
-    Route::post('/sekolah/tambah/kelas/{id}',[sekolah_ctrl::class,'aksi_tambahKelas']);
-
-    // aksi hapus
-    Route::get('/sekolah/kelas/hapus/{id}',[sekolah_ctrl::class,'hapusKelas']);
-    Route::get('/sekolah/hapus/{id}',[sekolah_ctrl::class,'hapusSekolah']);
-
-    // json realtime
-    Route::get('/sa',[sekolah_ctrl::class,'sekolahAll']);
-    Route::get('/ka/{id}',[sekolah_ctrl::class,'kelasAll']);
-    Route::get('/ma',[modulAjar_ctrl::class,'modulAll']);
-
     // profile
     Route::get('/profil',[profile_ctrl::class,'index']);
-    route::post('/profil/update',[profile_ctrl::class,'aksi_update']);
+    Route::post('/profil/update',[profile_ctrl::class,'aksi_update']);
 
+    // Modul Ajar
+    Route::get('/modul/buat',[ModulAjar_ctrl::class,'buat_modul']);
+    Route::post('/modul/buat-aksi',[ModulAjar_ctrl::class,'aksi_buat_modul']);
 });

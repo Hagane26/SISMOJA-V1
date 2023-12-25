@@ -25,7 +25,7 @@ class User extends Authenticatable
         'gender',
         'alamat',
         'telepon',
-        'whatsapp',
+        'status_info',
         'password',
     ];
 

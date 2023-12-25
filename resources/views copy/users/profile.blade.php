@@ -5,9 +5,14 @@
 @endsection
 
 @section('isi')
-@include('users.navbarUser')
 
-<div class="position-absolute top-0 start-50 translate-middle-x ms-5">
+<div class="row" style="width:90%;">
+    <div class="col-2">
+        @include('users.navbarUser')
+    </div>
+
+    <div class="col">
+<div class="position-absolute top-50 start-50 translate-middle">
     <div class="card mt-5" style="width: 60rem">
         <div class="card-header">
             <h5 class="card-title">Detail Profil</h5>
