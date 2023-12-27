@@ -1,6 +1,6 @@
 @extends('support.layout')
 
-@section('judul','Informasi Umum')
+@section('judul',$modul->judul)
 
 @section('isi')
     @include('users.navbarUser')
@@ -50,7 +50,6 @@
 
             </div>
         </div>
-
 
     </div>
 @endsection

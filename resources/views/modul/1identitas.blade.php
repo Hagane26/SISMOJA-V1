@@ -48,12 +48,6 @@
                 <button type="submit" class="btn btn-success col me-3 bi-check-square"> Simpan </button>
                 <a href="" class="btn btn-danger col bi-x-square"> Batalkan </a>
             </div>
-
-            @if (session()->has('mod_stat') == 1)
-                @if (session()->get('mod_stat') == 6)
-                    <a href="" class="btn btn-primary mt-2" style="width: 100%">Informasi Umum Selesai</a>
-                @endif
-            @endif
         </div>
 
     </div>

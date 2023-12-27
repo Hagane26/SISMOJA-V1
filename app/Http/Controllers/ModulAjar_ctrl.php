@@ -23,13 +23,31 @@ class ModulAjar_ctrl extends Controller
 
     public function index()
     {
+        $identitas = "";
         $data_modul = dataModulAjar::where('users_id',Auth::user()->id)->get()->all();
-        for($i=0;$i<(count($data_modul) - 1);$i++){
-            $identitas = identitas::where('id',$data_modul[$i]->_id)->get()->first();
-            $data_modul[$i]['identitas'] = "t";
+        for($i=0;$i<(count($data_modul));$i++){
+            $identitas = identitas::where('id',$data_modul[$i]->id)->get()->first();
+            $data_modul[$i]['identitas'] = $identitas;
         }
         //echo json_encode($data_modul[0]);
+        //echo $data_modul[0]->identitas->nama;
         return view('modul.index',['modul'=>$data_modul]);
+    }
+
+    public function lihat_modul(Request $req){
+        $mod = dataModulAjar::where('id',$req->mod_id)->get()->first();
+
+        if($mod->informasi_id == ''){
+
+        }else{
+            $info = informasiUmum::where('id',$mod->informasi_id)->get()->first();
+        }
+
+        if($mod->ppp_id == ''){
+
+        }else{
+            
+        }
     }
 
     public function buat_modul(){
@@ -45,6 +63,10 @@ class ModulAjar_ctrl extends Controller
         session()->forget('identitas');
         session()->forget('komponenAwal');
         session()->forget('ppp');
+        session()->forget('model');
+        session()->forget('sarana');
+        session()->forget('prasarana');
+        session()->forget('tpd');
         session()->forget('mod_stat');
 
         $req->validate([
@@ -69,6 +91,10 @@ class ModulAjar_ctrl extends Controller
     }
 
     public function informasi_modul($step){
+        if(session()->has('mod_id') == 0){
+            return redirect()->back();
+        }
+
         $mod_id = session('mod_id');
         $judul = dataModulAjar::where('id',$mod_id)->get()->first();
 
@@ -197,7 +223,7 @@ class ModulAjar_ctrl extends Controller
         if(session()->has('ppp')==1){
             for($i = 1;$i<$j;$i++){
                 if($req['i_j'.$i]){
-                    $parcel = ppp::where('id',session()->get('ppp')[$i]['id'])->create([
+                    $parcel = ppp::where('id',session()->get('ppp')[$i]['id'])->update([
                         'subjudul' => $req['nj_'.$i],
                         'isi' => $req['i_j'.$i],
                         'informasi_id' => session()->get('informasiUmum')['id'],
@@ -282,7 +308,7 @@ class ModulAjar_ctrl extends Controller
         if(session()->has('model')==1){
             for($i = 1;$i<$j;$i++){
                 if($req['i_j'.$i]){
-                    $parcel = modelPembelajaran::where('id',session()->get('model')[$i]['id'])->create([
+                    $parcel = modelPembelajaran::where('id',session()->get('model')[$i]['id'])->update([
                         'metodePembelajaran' => $req['nj_'.$i],
                         'isi' => $req['i_j'.$i],
                         'informasi_id' => session()->get('informasiUmum')['id'],
@@ -321,9 +347,9 @@ class ModulAjar_ctrl extends Controller
     }
 
     public function informasiUmum_Selesai(){
-        echo json_encode(session()->get('ppp'));
-        echo "</br>";
-        echo session()->get('ppp')[0]['id'];
-        //return view('modul.1selesai');
+        //echo json_encode(session()->get('ppp'));
+        //echo "</br>";
+        //echo session()->get('ppp')[0]['id'];
+        return view('modul.1selesai');
     }
 }
