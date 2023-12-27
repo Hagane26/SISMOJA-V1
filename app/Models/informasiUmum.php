@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class informasiUmum extends Model
 {
+    protected $guarded = ['id'];
     use HasFactory;
 }

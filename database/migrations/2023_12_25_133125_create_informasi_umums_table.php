@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('informasi_umums', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('identitas_id');
+            $table->unsignedBigInteger('identitas_id')->nullable();
             $table->text('komponenAwal')->nullable();
             $table->text('sarana')->nullable();
             $table->string('target')->nullable();
-            $table->unsignedBigInteger('modelPembelajaran_id');
+            $table->unsignedBigInteger('modelPembelajaran_id')->nullable();
             $table->timestamps();
 
             $table->foreign('modelPembelajaran_id')->references('id')->on('model_pembelajarans');

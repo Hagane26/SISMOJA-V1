@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('identitas', function (Blueprint $table) {
             $table->id();
             $table->string('nama')->nullable();
+            $table->string('mapel')->nullable();
             $table->string('institusi')->nullable();
             $table->string('fase')->nullable();
             $table->string('kelas')->nullable();

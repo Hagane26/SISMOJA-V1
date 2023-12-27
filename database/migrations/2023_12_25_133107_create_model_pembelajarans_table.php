@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('model_pembelajarans', function (Blueprint $table) {
             $table->id();
-            $table->string('pendekatan')->nullable();
-            $table->string('model')->nullable();
-            $table->string('motode')->nullable();
-            $table->string('teknik')->nullable();
+            $table->string('metodePembelajaran')->nullable();
+            $table->string('isi')->nullable();
+            $table->unsignedBigInteger('informasi_id')->nullable();
             $table->timestamps();
+
         });
     }
 

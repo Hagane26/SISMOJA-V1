@@ -45,6 +45,17 @@ Route::middleware('auth')->group(function(){
     Route::post('/profil/update',[profile_ctrl::class,'aksi_update']);
 
     // Modul Ajar
+    route::get('/modul',[ModulAjar_ctrl::class,'index']);
     Route::get('/modul/buat',[ModulAjar_ctrl::class,'buat_modul']);
     Route::post('/modul/buat-aksi',[ModulAjar_ctrl::class,'aksi_buat_modul']);
+
+    route::get('/modul/buat/informasi/{step}',[ModulAjar_ctrl::class,'informasi_modul']);
+    route::post('/modul/buat/informasi/identitas-aksi',[ModulAjar_ctrl::class,'identitas_aksi']);
+    route::post('/modul/buat/informasi/komponenAwal-aksi',[ModulAjar_ctrl::class,'komponenAwal_aksi']);
+    route::post('/modul/buat/informasi/ppp-aksi',[ModulAjar_ctrl::class,'ppp_aksi']);
+    route::post('/modul/buat/informasi/sarana-aksi',[ModulAjar_ctrl::class,'sarana_aksi']);
+    route::post('/modul/buat/informasi/target-aksi',[ModulAjar_ctrl::class,'target_aksi']);
+    route::post('/modul/buat/informasi/model-aksi',[ModulAjar_ctrl::class,'model_aksi']);
+    route::get('/modul/buat/1/selesai',[ModulAjar_ctrl::class,'informasiUmum_Selesai']);
+
 });

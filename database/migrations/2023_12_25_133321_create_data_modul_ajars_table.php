@@ -19,13 +19,14 @@ return new class extends Migration
             $table->unsignedBigInteger('komponen_id')->nullable();
             $table->unsignedBigInteger('lampiran_id')->nullable();
             $table->unsignedBigInteger('users_id');
+            $table->char('status',1)->nullable();
             $table->timestamps();
 
-            $table->foreign('informasi_id')->references('id')->on('informasi_umums');
-            $table->foreign('ppp_id')->references('id')->on('ppps');
-            $table->foreign('komponen_id')->references('id')->on('komponen_intis');
-            $table->foreign('lampiran_id')->references('id')->on('lampirans');
-            $table->foreign('users_id')->references('id')->on('users');
+            $table->foreign('informasi_id')->references('id')->on('informasi_umums')->onUpdate('cascade');
+            $table->foreign('ppp_id')->references('id')->on('ppps')->onUpdate('cascade');
+            $table->foreign('komponen_id')->references('id')->on('komponen_intis')->onUpdate('cascade');
+            $table->foreign('lampiran_id')->references('id')->on('lampirans')->onUpdate('cascade');
+            $table->foreign('users_id')->references('id')->on('users')->onUpdate('cascade');
         });
     }
 
