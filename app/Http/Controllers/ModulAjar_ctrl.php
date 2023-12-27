@@ -64,10 +64,9 @@ class ModulAjar_ctrl extends Controller
         }
 
             // model
-        if($info->modelPembelajaran_id ==''){
-            $model = $msg_default;
-        }else{
-            $model = modelPembelajaran::where('id',$info->modelPembelajaran_id)->get()->first();
+        $model = modelPembelajaran::where('informasi_id',$info->id)->get();
+        if(count($model) == 0){
+            $ppp = $msg_default;
         }
 
         // profil pelajar pancasila
@@ -235,7 +234,8 @@ class ModulAjar_ctrl extends Controller
         }
 
         if($parcel){
-            session(['mod_stat' => 1]);
+            $stat = session()->get('mod_stat')+1;
+            session(['mod_stat' => $stat]);
             return redirect('/modul/buat/informasi/2');
         }else{
             return redirect()->back()->withErrors('Terjadi Kesalahan Input');
@@ -252,7 +252,8 @@ class ModulAjar_ctrl extends Controller
         if($parcel){
             $nparcel = informasiUmum::where('id',session()->get('informasiUmum')['id'])->get()->first();
             session(['informasiUmum'=>$nparcel]);
-            session(['mod_stat' => 2]);
+            $stat = session()->get('mod_stat')+1;
+            session(['mod_stat' => $stat]);
             return redirect('/modul/buat/informasi/3');
         }else{
             return redirect()->back()->withErrors('Terjadi Kesalahan Input');
@@ -319,7 +320,8 @@ class ModulAjar_ctrl extends Controller
                 session(['sarana' => $req->sarana]);
                 session(['prasarana' => $req->prasarana]);
                 session(['informasiUmum'=>$nparcel]);
-                session(['mod_stat' => 4]);
+                $stat = session()->get('mod_stat')+1;
+                session(['mod_stat' => $stat]);
                 return redirect('/modul/buat/informasi/5');
             }else{
                 return redirect()->back()->withErrors('Terjadi Kesalahan Input');
@@ -338,7 +340,8 @@ class ModulAjar_ctrl extends Controller
                 $nparcel = informasiUmum::where('id',session()->get('informasiUmum')['id'])->get()->first();
                 session(['tpd'=> $req->tpd]);
                 session(['informasiUmum'=>$nparcel]);
-                session(['mod_stat' => 5]);
+                $stat = session()->get('mod_stat')+1;
+                session(['mod_stat' => $stat]);
                 return redirect('/modul/buat/informasi/6');
             }else{
                 return redirect()->back()->withErrors('Terjadi Kesalahan Input');
@@ -352,41 +355,95 @@ class ModulAjar_ctrl extends Controller
         $parcel = "";
         if(session()->has('model')==1){
             for($i = 1;$i<$j;$i++){
-                if($req['i_j'.$i]){
+                $s = 'pe-';
+                if($req[$s.$i]){
                     $parcel = modelPembelajaran::where('id',session()->get('model')[$i]['id'])->update([
-                        'metodePembelajaran' => $req['nj_'.$i],
-                        'isi' => $req['i_j'.$i],
+                        'metodePembelajaran' => $req[$s.$i],
+                        'kategori' => substr($s,0,2),
                         'informasi_id' => session()->get('informasiUmum')['id'],
                     ]);
+                    $nparcel = modelPembelajaran::where('id',session()->get('model')[$i]['id'])->get()->first();
+                }
+                $s = 'mo-';
+                if($req[$s.$i]){
+                    $parcel = modelPembelajaran::where('id',session()->get('model')[$i]['id'])->update([
+                        'metodePembelajaran' => $req[$s.$i],
+                        'kategori' => substr($s,0,2),
+                        'informasi_id' => session()->get('informasiUmum')['id'],
+                    ]);
+                    $nparcel = modelPembelajaran::where('id',session()->get('model')[$i]['id'])->get()->first();
+                }
+                $s = 'me-';
+                if($req[$s.$i]){
+                    $parcel = modelPembelajaran::where('id',session()->get('model')[$i]['id'])->update([
+                        'metodePembelajaran' => $req[$s.$i],
+                        'kategori' => substr($s,0,2),
+                        'informasi_id' => session()->get('informasiUmum')['id'],
+                    ]);
+                    $nparcel = modelPembelajaran::where('id',session()->get('model')[$i]['id'])->get()->first();
+                }
+                $s = 'te-';
+                if($req[$s.$i]){
+                    $parcel = modelPembelajaran::where('id',session()->get('model')[$i]['id'])->update([
+                        'metodePembelajaran' => $req[$s.$i],
+                        'kategori' => substr($s,0,2),
+                        'informasi_id' => session()->get('informasiUmum')['id'],
+                    ]);
+                    $nparcel = modelPembelajaran::where('id',session()->get('model')[$i]['id'])->get()->first();
                 }
                 $data[$i] = [
-                    'id_tl' => 'nj_'.$i,
-                    'id_tx' => 'i_j'.$i,
-                    'judul' => $req['nj_'.$i],
-                    'isi' => $req['i_j'.$i],
+                    'id' => $nparcel->id,
+                    'id_tl' => $s.$i,
+                    'isi' => $req[$s.$i],
+                    'kat' => $nparcel->kategori,
                 ];
             }
         }else{
             for($i = 1;$i<$j;$i++){
-                if($req['i_j'.$i]){
+                $s = 'pe-';
+                if($req[$s.$i]){
                     $parcel = modelPembelajaran::create([
-                        'metodePembelajaran' => $req['nj_'.$i],
-                        'isi' => $req['i_j'.$i],
+                        'metodePembelajaran' => $req[$s.$i],
+                        'kategori' => substr($s,0,2),
+                        'informasi_id' => session()->get('informasiUmum')['id'],
+                    ]);
+                }
+                $s = 'mo-';
+                if($req[$s.$i]){
+                    $parcel = modelPembelajaran::create([
+                        'metodePembelajaran' => $req[$s.$i],
+                        'kategori' => substr($s,0,2),
+                        'informasi_id' => session()->get('informasiUmum')['id'],
+                    ]);
+                }
+                $s = 'me-';
+                if($req[$s.$i]){
+                    $parcel = modelPembelajaran::create([
+                        'metodePembelajaran' => $req[$s.$i],
+                        'kategori' => substr($s,0,2),
+                        'informasi_id' => session()->get('informasiUmum')['id'],
+                    ]);
+                }
+                $s = 'te-';
+                if($req[$s.$i]){
+                    $parcel = modelPembelajaran::create([
+                        'metodePembelajaran' => $req[$s.$i],
+                        'kategori' => substr($s,0,2),
                         'informasi_id' => session()->get('informasiUmum')['id'],
                     ]);
                 }
                 $data[$i] = [
                     'id' => $parcel->id,
-                    'id_tl' => 'nj_'.$i,
-                    'id_tx' => 'i_j'.$i,
-                    'judul' => $req['nj_'.$i],
-                    'isi' => $req['i_j'.$i],
+                    'id_tl' => $s.$i,
+                    'isi' => $req[$s.$i],
+                    'kat' => $parcel->kategori,
                 ];
             }
         }
         session(['model'=>$data]);
         //echo json_encode(session()->get('ppp'));
-        session(['mod_stat' => 6]);
+        $stat = session()->get('mod_stat')+1;
+        session(['mod_stat' => $stat]);
         //echo $parcel->id;
         return redirect('/modul/buat/informasi/6');
     }

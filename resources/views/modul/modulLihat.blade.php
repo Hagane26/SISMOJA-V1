@@ -150,10 +150,48 @@
                     </div>
                     <div class="card-body">
 
-                        <div class="form-control">
-                            @php
-                                echo $res->data_informasi->target;
-                            @endphp
+                        <div class="mb-4 row mx-lg-5">
+                            <label class="form-label fw-bold">Pendekatan</label>
+                            <ol class="list-group list-group-numbered">
+                                @foreach ($res->data_informasi->model as $del)
+                                    @if ($del->kategori == "pe" )
+                                        <li class="list-group-item">{{ $del->metodePembelajaran }}</li>
+                                    @endif
+                                @endforeach
+                            </ol>
+                        </div>
+
+                        <div class="mb-4 row mx-lg-5">
+                            <label class="form-label fw-bold">Model</label>
+                            <ol class="list-group list-group-numbered">
+                                @foreach ($res->data_informasi->model as $del)
+                                    @if ($del->kategori == "mo" )
+                                        <li class="list-group-item">{{ $del->metodePembelajaran }}</li>
+                                    @endif
+                                @endforeach
+                            </ol>
+                        </div>
+
+                        <div class="mb-4 row mx-lg-5">
+                            <label class="form-label fw-bold">Metode</label>
+                            <ol class="list-group list-group-numbered">
+                                @foreach ($res->data_informasi->model as $del)
+                                    @if ($del->kategori == "me" )
+                                        <li class="list-group-item">{{ $del->metodePembelajaran }}</li>
+                                    @endif
+                                @endforeach
+                            </ol>
+                        </div>
+
+                        <div class="mb-4 row mx-lg-5">
+                            <label class="form-label fw-bold">Teknik</label>
+                            <ol class="list-group list-group-numbered">
+                                @foreach ($res->data_informasi->model as $del)
+                                    @if ($del->kategori == "te" )
+                                        <li class="list-group-item">{{ $del->metodePembelajaran }}</li>
+                                    @endif
+                                @endforeach
+                            </ol>
                         </div>
 
                     </div>

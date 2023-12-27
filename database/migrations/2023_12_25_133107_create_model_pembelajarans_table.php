@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('model_pembelajarans', function (Blueprint $table) {
             $table->id();
             $table->string('metodePembelajaran')->nullable();
-            $table->string('isi')->nullable();
+            $table->string('kategori')->nullable();
             $table->unsignedBigInteger('informasi_id')->nullable();
             $table->timestamps();
 

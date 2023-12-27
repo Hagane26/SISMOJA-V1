@@ -40,7 +40,7 @@
 
         <div class="input-group flex-nowrap mt-3">
             <span class="input-group-text me-1 bg-secondary text-white" style="width: 18%">Alokasi Waktu</span>
-            <input type="text" class="form-control" id="waktu" name="waktu" value="{{ session()->has('identitas') == 1 ? session()->get('identitas')['alokasi_waktu'] : '' }}">
+            <input type="text" placeholder="2 x 45 Menit" class="form-control" id="waktu" name="waktu" value="{{ session()->has('identitas') == 1 ? session()->get('identitas')['alokasi_waktu'] : '' }}">
         </div>
 
         <div class="position-relative bottom-0 start-50 translate-middle-x mt-3" style="width:50%">
