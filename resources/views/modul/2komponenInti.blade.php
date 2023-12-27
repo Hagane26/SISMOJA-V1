@@ -33,7 +33,7 @@
             <div class="card-body">
                 <h4 class="card-title" style="font-weight:bold">Judul Materi : {{ $res['judul'] }}</h4>
                 <h6 class="card-subtitle"> Komponen Inti </h6>
-                <form action="/modul/buat/informasi/{{ $res['aksi'] }}" method="post">
+                <form action="/modul/buat/inti/{{ $res['aksi'] }}" method="post">
                     @csrf
                     @include($res['view'])
                 </form>

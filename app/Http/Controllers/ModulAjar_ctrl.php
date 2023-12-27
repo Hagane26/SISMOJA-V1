@@ -454,4 +454,63 @@ class ModulAjar_ctrl extends Controller
         //echo session()->get('ppp')[0]['id'];
         return view('modul.1selesai');
     }
+
+
+
+
+
+
+    // Komponen Inti
+    public function inti_modul($step){
+        if(session()->has('mod_id') == 0){
+            return redirect()->back();
+        }
+
+        $mod_id = session('mod_id');
+        $judul = dataModulAjar::where('id',$mod_id)->get()->first();
+
+        if(!is_numeric($step)){
+            return redirect()->back();
+        }
+
+        $pos = $step - 1;
+        $go = "";
+
+        switch($step){
+            case 1:
+                $go = "tujuan";
+                break;
+            case 2:
+                $go = "komponenAwal";
+                break;
+            case 3:
+                $go = "ppp";
+                break;
+            case 4:
+                $go = "sarana";
+                break;
+            case 5:
+                $go = "target";
+                break;
+            case 6:
+                $go = "model";
+                break;
+            case 'selesai':
+                $go = "selesai";
+                break;
+        }
+
+        $data = [
+            'judul' => $judul->judul,
+            'view' => "modul.2". $go,
+            'go' => $go,
+            'pos' => $pos,
+            'aksi' => 'inti/' . $go . '-aksi',
+            'pos_s' => $pos * 20,
+        ];
+
+        //echo session('mod_id') . " - w";
+        return view('modul.2komponenInti',['res' => $data]);
+        //echo json_encode(session()->get('identitas'));
+    }
 }

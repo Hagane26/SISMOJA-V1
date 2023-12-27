@@ -58,6 +58,8 @@ Route::middleware('auth')->group(function(){
     route::post('/modul/buat/informasi/model-aksi',[ModulAjar_ctrl::class,'model_aksi']);
     route::get('/modul/buat/1/selesai',[ModulAjar_ctrl::class,'informasiUmum_Selesai']);
 
+    route::get('/modul/buat/inti/{step}',[ModulAjar_ctrl::class,'inti_modul']);
+
     route::post('/modul/lihat', [ModulAjar_ctrl::class,'lihat_modul']);
     route::post('/modul/hapus', [ModulAjar_ctrl::class,'hapus_modul']);
 });

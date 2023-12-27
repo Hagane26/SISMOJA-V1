@@ -10,7 +10,7 @@
             <div class="card-body">
 
                 <h4 class="card-title">Informasi Umum Selesai</h4>
-                
+                <a href="/modul/buat/inti/1" class="btn btn-success">Buat Komponen Inti</a>
             </div>
         </div>
 
