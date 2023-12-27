@@ -11,6 +11,11 @@ use App\Models\informasiUmum;
 use App\Models\ppp;
 use App\Models\modelPembelajaran;
 
+use App\Models\komponenInti;
+use App\Models\lampiran;
+
+use App\Models\User;
+
 class ModulAjar_ctrl extends Controller
 {
     public function cek_status_user(){
@@ -36,18 +41,56 @@ class ModulAjar_ctrl extends Controller
 
     public function lihat_modul(Request $req){
         $mod = dataModulAjar::where('id',$req->mod_id)->get()->first();
+        $msg_default = "Data Belum Dibuat";
+        $info = "";
+        $identitas = "";
+        $model = "";
 
+        $ppp = "";
+        $ki = "";
+        $lam = "";
+
+        // informasi umum
         if($mod->informasi_id == ''){
-
+            $info = $msg_default;
         }else{
             $info = informasiUmum::where('id',$mod->informasi_id)->get()->first();
         }
-
-        if($mod->ppp_id == ''){
-
+            // identitas
+        if($info->identitas_id == ''){
+            $identitas = $msg_default;
         }else{
-            
+            $identitas = identitas::where('id',$info->identitas_id)->get()->first();
         }
+
+            // model
+        if($info->modelPembelajaran_id ==''){
+            $model = $msg_default;
+        }else{
+            $model = modelPembelajaran::where('id',$info->modelPembelajaran_id)->get()->first();
+        }
+
+        // profil pelajar pancasila
+        $ppp = ppp::where('informasi_id',$info->id)->get();
+        if(count($ppp) == 0){
+            $ppp = $msg_default;
+        }
+
+        // komponen inti
+        if($mod->komponen_id == ''){
+            $ki = $msg_default;
+        }else{
+            $ki = komponenInti::where('id',$mod->komponen_id)->get()->first();
+        }
+
+        $info['identitas'] = $identitas;
+        $info['model'] = $model;
+        $mod['data_informasi'] = $info;
+        $mod['data_ppp'] = $ppp;
+        $mod['data_komponen_inti'] = $ki;
+
+        //echo json_encode($mod);
+        return view('modul.modulLihat',['res'=>$mod]);
     }
 
     public function buat_modul(){
@@ -266,8 +309,10 @@ class ModulAjar_ctrl extends Controller
             return redirect()->back()->withErrors('Isi Salah Satu');
         }else{
 
-            $parcel = informasiUmum::where('id',session()->get('informasiUmum')['id'])->update([
-                'sarana'=> $req->sarana . " </br> " . $req->prasarana
+            $parcel = informasiUmum::where('id',session()->get('informasiUmum')['id'])->update(
+            [
+                'sarana'=> $req->sarana,
+                'prasarana' => $req->prasarana,
             ]);
             if($parcel){
                 $nparcel = informasiUmum::where('id',session()->get('informasiUmum')['id'])->get()->first();

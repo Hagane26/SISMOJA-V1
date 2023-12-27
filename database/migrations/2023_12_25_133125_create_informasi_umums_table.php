@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('identitas_id')->nullable();
             $table->text('komponenAwal')->nullable();
             $table->text('sarana')->nullable();
+            $table->text('prasarana')->nullable();
             $table->string('target')->nullable();
             $table->unsignedBigInteger('modelPembelajaran_id')->nullable();
             $table->timestamps();

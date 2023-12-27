@@ -42,7 +42,7 @@
 
         @if (session()->has('mod_stat') == 1)
             @if (session()->get('mod_stat') == 6)
-                <a href="/model/buat/1/selesai" class="btn btn-primary mt-2" style="width: 100%">Informasi Umum Selesai</a>
+                <a href="/modul/buat/1/selesai" class="btn btn-primary mt-2 mb-5" style="width: 100%">Informasi Umum Selesai</a>
             @endif
         @endif
 

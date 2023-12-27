@@ -1,4 +1,4 @@
-<div class="position-fixed top-0 start-0" style="width: 15%">
+<div class="position-fixed top-0 start-0 mt-3" style="width: 15%">
     <div class="card">
         <img src="https://www.kemdikbud.go.id/main/files/large/83790f2b43f00be" class="card-img-top" alt="...">
         <div class="btn-group-vertical" role="group">
@@ -19,7 +19,7 @@
     </div>
 
     <div class="position-sticky bottom-0">
-        <a href="/logout" class="btn btn-danger" style="width:100%">Logout</a>
+        <a href="/logout" class="btn btn-danger" style="width:80%; margin:10%"> <i class="bi bi-box-arrow-left"></i> Logout</a>
     </div>
 
 </div>
