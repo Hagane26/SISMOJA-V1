@@ -21,7 +21,7 @@
                 <form action="/modul/buat-aksi" method="post">
                     @csrf
                     <input type="text" class="form-control mb-3" name="materi" id="materi">
-                    <input type="submit" class="btn btn-success" value="Buat Modul">
+                    <button type="submit" class="btn btn-success bi-pencil-square" style="width: 100%"> Mulai Buat Modul </button>
                 </form>
             </div>
         </div>

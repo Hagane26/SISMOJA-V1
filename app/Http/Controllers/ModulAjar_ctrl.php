@@ -100,8 +100,23 @@ class ModulAjar_ctrl extends Controller
         }
     }
 
-    public function aksi_buat_modul(Request $req){
+    public function hapus_modul(Request $req){
+        $modul = dataModulAjar::where('id',$req->mod_id)->get()->first();
+        $info_id = informasiUmum::where('id',$modul->informasi_id)->get()->first();
+        $identitas_id = identitas::where('id',$info_id->identitas_id)->get()->first();
+
+        //hapus
+
+        ppp::where('informasi_id',$info_id->id)->delete();
+        modelPembelajaran::where('informasi_id',$info_id->id)->delete();
+        informasiUmum::where('id',$info_id->id)->delete();
+        identitas::where('id',$identitas_id->id)->delete();
+        dataModulAjar::where('id',$modul->id)->delete();
+    }
+
+    public function flush_session(){
         session()->forget('mod_id');
+
         session()->forget('identitas');
         session()->forget('komponenAwal');
         session()->forget('ppp');
@@ -110,6 +125,11 @@ class ModulAjar_ctrl extends Controller
         session()->forget('prasarana');
         session()->forget('tpd');
         session()->forget('mod_stat');
+
+    }
+
+    public function aksi_buat_modul(Request $req){
+        $this->flush_session();
 
         $req->validate([
             'materi' => 'required',
@@ -452,13 +472,13 @@ class ModulAjar_ctrl extends Controller
         //echo json_encode(session()->get('ppp'));
         //echo "</br>";
         //echo session()->get('ppp')[0]['id'];
+        $parcel = komponenInti::create();
+        $mod_id = session()->get('mod_id');
+        dataModulAjar::where('id',$mod_id)->update(['komponen_id'=>$parcel->id]);
         return view('modul.1selesai');
     }
 
-
-
-
-
+// =============================================================================
 
     // Komponen Inti
     public function inti_modul($step){
@@ -466,7 +486,7 @@ class ModulAjar_ctrl extends Controller
             return redirect()->back();
         }
 
-        $mod_id = session('mod_id');
+        $mod_id = session()->get('mod_id');
         $judul = dataModulAjar::where('id',$mod_id)->get()->first();
 
         if(!is_numeric($step)){
@@ -481,19 +501,25 @@ class ModulAjar_ctrl extends Controller
                 $go = "tujuan";
                 break;
             case 2:
-                $go = "komponenAwal";
+                $go = "asesmen";
                 break;
             case 3:
-                $go = "ppp";
+                $go = "pemahaman";
                 break;
             case 4:
-                $go = "sarana";
+                $go = "pemantik";
                 break;
             case 5:
-                $go = "target";
+                $go = "pembukaan";
                 break;
             case 6:
-                $go = "model";
+                $go = "kegiatanInti";
+                break;
+            case 7:
+                $go = "penutup";
+                break;
+            case 8:
+                $go = "refleksi";
                 break;
             case 'selesai':
                 $go = "selesai";
@@ -506,11 +532,158 @@ class ModulAjar_ctrl extends Controller
             'go' => $go,
             'pos' => $pos,
             'aksi' => 'inti/' . $go . '-aksi',
-            'pos_s' => $pos * 20,
+            'pos_s' => $pos * 14.3,
         ];
 
         //echo session('mod_id') . " - w";
         return view('modul.2komponenInti',['res' => $data]);
         //echo json_encode(session()->get('identitas'));
     }
+
+    public function tujuan_aksi(Request $req){
+        $data = $req->validate([
+            'tujuan' => 'required',
+        ]);
+
+        $data = dataModulAjar::where('id',session()->get('mod_id'))->first();
+        $ki_id = $data->komponen_id;
+        $parcel = komponenInti::where('id',$ki_id)->update(['tujuan'=>$req->tujuan]);
+        session(['ki_tujuan'=>$req->tujuan]);
+        return redirect('/modul/buat/inti/2');
+    }
+
+    public function asesmen_aksi(Request $req){
+        $data = $req->validate([
+            'a_d' => 'required',
+            'a_f' => 'required',
+            'a_s' => 'required',
+        ]);
+
+        $data = dataModulAjar::where('id',session()->get('mod_id'))->first();
+        $ki_id = $data->komponen_id;
+        $parcel = komponenInti::where('id',$ki_id)->update([
+            'asasmen_diagnostik'=>$req->a_d,
+            'asasmen_formatif'=>$req->a_f,
+            'asasmen_sumatif'=>$req->a_s,
+        ]);
+        session(['ki_a_d'=>$req->a_d]);
+        session(['ki_a_f'=>$req->a_f]);
+        session(['ki_a_s'=>$req->a_s]);
+        return redirect('/modul/buat/inti/3');
+    }
+
+    public function pemahaman_aksi(Request $req){
+        $data = $req->validate([
+            'pemahaman' => 'required',
+        ]);
+
+        $data = dataModulAjar::where('id',session()->get('mod_id'))->first();
+        $ki_id = $data->komponen_id;
+        $parcel = komponenInti::where('id',$ki_id)->update([
+            'pemahaman_bermakna'=>$req->pemahaman,
+        ]);
+        session(['ki_pemahaman'=>$req->pemahaman]);
+        return redirect('/modul/buat/inti/4');
+    }
+
+    public function pemantik_aksi(Request $req){
+        $data = $req->validate([
+            'pemantik' => 'required',
+        ]);
+
+        $data = dataModulAjar::where('id',session()->get('mod_id'))->first();
+        $ki_id = $data->komponen_id;
+        $parcel = komponenInti::where('id',$ki_id)->update([
+            'pemahaman_pemantik'=>$req->pemantik,
+        ]);
+        session(['ki_pemantik'=>$req->pemahaman]);
+        return redirect('/modul/buat/inti/5');
+    }
+
+    public function pembukaan_aksi(Request $req){
+        $data = $req->validate([
+            'p_1a' => 'required',
+            'p_2a' => 'required',
+            'p_3a' => 'required',
+            'p_4a' => 'required',
+            'p_5a' => 'required',
+            'p_6a' => 'required',
+            'p_7a' => 'required',
+
+            'p_1b' => 'required',
+            'p_2b' => 'required',
+            'p_3b' => 'required',
+            'p_4b' => 'required',
+            'p_5b' => 'required',
+            'p_6b' => 'required',
+            'p_7b' => 'required',
+        ]);
+
+        $data = dataModulAjar::where('id',session()->get('mod_id'))->first();
+        $ki_id = $data->komponen_id;
+        //$parcel = komponenInti::where('id',$ki_id)->update([
+        //    'pemahaman_pemantik'=>$req->pemantik,
+        //]);
+        //session(['ki_pemantik'=>$req->pemahaman]);
+        return redirect('/modul/buat/inti/6');
+    }
+
+    public function kegiatanInti_aksi(Request $req){
+        $data = $req->validate([
+
+        ]);
+
+        $data = dataModulAjar::where('id',session()->get('mod_id'))->first();
+        $ki_id = $data->komponen_id;
+        //$parcel = komponenInti::where('id',$ki_id)->update([
+        //    'pemahaman_pemantik'=>$req->pemantik,
+        //]);
+        //session(['ki_pemantik'=>$req->pemahaman]);
+        return redirect('/modul/buat/inti/7');
+    }
+
+    public function penutup_aksi(Request $req){
+        $data = $req->validate([
+
+        ]);
+
+        $data = dataModulAjar::where('id',session()->get('mod_id'))->first();
+        $ki_id = $data->komponen_id;
+        //$parcel = komponenInti::where('id',$ki_id)->update([
+        //    'pemahaman_pemantik'=>$req->pemantik,
+        //]);
+        //session(['ki_pemantik'=>$req->pemahaman]);
+        return redirect('/modul/buat/inti/8');
+    }
+
+    public function refleksi_aksi(Request $req){
+        $data = $req->validate([
+
+        ]);
+
+        $data = dataModulAjar::where('id',session()->get('mod_id'))->first();
+        $ki_id = $data->komponen_id;
+        //$parcel = komponenInti::where('id',$ki_id)->update([
+        //    'pemahaman_pemantik'=>$req->pemantik,
+        //]);
+        //session(['ki_pemantik'=>$req->pemahaman]);
+        return redirect('/modul/buat/inti/selesai');
+        //echo "y";
+    }
+
+    public function inti_selesai(Request $req){
+        $data = $req->validate([
+
+        ]);
+
+        $data = dataModulAjar::where('id',session()->get('mod_id'))->first();
+        $ki_id = $data->komponen_id;
+        //$parcel = komponenInti::where('id',$ki_id)->update([
+        //    'pemahaman_pemantik'=>$req->pemantik,
+        //]);
+        //session(['ki_pemantik'=>$req->pemahaman]);
+        $this->flush_session();
+        return view('modul.2selesai');
+    }
+
 }

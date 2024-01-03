@@ -21,8 +21,8 @@ return new class extends Migration
             $table->unsignedBigInteger('modelPembelajaran_id')->nullable();
             $table->timestamps();
 
-            $table->foreign('modelPembelajaran_id')->references('id')->on('model_pembelajarans');
-            $table->foreign('identitas_id')->references('id')->on('identitas');
+            $table->foreign('modelPembelajaran_id')->references('id')->on('model_pembelajarans')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('identitas_id')->references('id')->on('identitas')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

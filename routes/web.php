@@ -59,6 +59,15 @@ Route::middleware('auth')->group(function(){
     route::get('/modul/buat/1/selesai',[ModulAjar_ctrl::class,'informasiUmum_Selesai']);
 
     route::get('/modul/buat/inti/{step}',[ModulAjar_ctrl::class,'inti_modul']);
+    route::post('/modul/buat/inti/tujuan-aksi',[ModulAjar_ctrl::class,'tujuan_aksi']);
+    route::post('/modul/buat/inti/asesmen-aksi',[ModulAjar_ctrl::class,'asesmen_aksi']);
+    route::post('/modul/buat/inti/pemahaman-aksi',[ModulAjar_ctrl::class,'pemahaman_aksi']);
+    route::post('/modul/buat/inti/pemantik-aksi',[ModulAjar_ctrl::class,'pemantik_aksi']);
+    route::post('/modul/buat/inti/pembukaan-aksi',[ModulAjar_ctrl::class,'pembukaan_aksi']);
+    route::post('/modul/buat/inti/kegiatanInti-aksi',[ModulAjar_ctrl::class,'kegiatanInti_aksi']);
+    route::post('/modul/buat/inti/penutup-aksi',[ModulAjar_ctrl::class,'penutup_aksi']);
+    route::post('/modul/buat/inti/refleksi-aksi',[ModulAjar_ctrl::class,'refleksi_aksi']);
+    route::get('/modul/buat/2/selesai',[ModulAjar_ctrl::class,'inti_selesai']);
 
     route::post('/modul/lihat', [ModulAjar_ctrl::class,'lihat_modul']);
     route::post('/modul/hapus', [ModulAjar_ctrl::class,'hapus_modul']);

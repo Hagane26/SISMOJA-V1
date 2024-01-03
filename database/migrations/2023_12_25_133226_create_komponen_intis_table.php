@@ -20,10 +20,10 @@ return new class extends Migration
             $table->text('pemahaman_bermakna')->nullable();
             $table->text('pemahaman_pemantik')->nullable();
             $table->text('refleksi')->nullable();
-            $table->unsignedBigInteger('kegiatan_id');
+            $table->unsignedBigInteger('kegiatan_id')->nullable();
             $table->timestamps();
 
-            $table->foreign('kegiatan_id')->references('id')->on('kegiatan_pembelajarans');
+            $table->foreign('kegiatan_id')->references('id')->on('kegiatan_pembelajarans')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

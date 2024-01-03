@@ -1,10 +1,10 @@
 <div class="card mt-3">
     <div class="card-body">
-        <h4 class="card-title">Tujuan</h4>
+        <h4 class="card-title">Pertanyaan Pemantik</h4>
 
         <div class="row g-2 align-items-center ms-5 mb-2">
-            <textarea name="tujuan" id="editor">
-                {{ session()->has('ki_tujuan') == 1 ? session()->get('ki_tujuan') : '' }}
+            <textarea name="pemantik" id="editor">
+                {{ session()->has('ki_pemantik') == 1 ? session()->get('ki_pemantik') : '' }}
             </textarea>
         </div>
 

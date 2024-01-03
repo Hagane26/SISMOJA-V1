@@ -1,12 +1,8 @@
 <div class="card mt-3">
     <div class="card-body">
-        <h4 class="card-title">Tujuan</h4>
+        <h4 class="card-title">Penutup</h4>
 
-        <div class="row g-2 align-items-center ms-5 mb-2">
-            <textarea name="tujuan" id="editor">
-                {{ session()->has('ki_tujuan') == 1 ? session()->get('ki_tujuan') : '' }}
-            </textarea>
-        </div>
+        <h5>Belum Selesai Lewati terlebih dahulu</h5>
 
         <div class="position-relative bottom-0 start-50 translate-middle-x mt-3" style="width:50%">
             <div class="row">
