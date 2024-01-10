@@ -25,7 +25,7 @@ class register_ctrl extends Controller
 
         if ($ce < 1){
             if($pass != $cpass){
-                return Redirect::back()->withErrors(['msg'=>'Password Tidak Sama!!']);
+                return Redirect::back()->withErrors(['msg'=>'Password Tidak Sama!!','bx1'=>'border']);
             }else{
                 $parcel = [
                     'email' => $request->email,

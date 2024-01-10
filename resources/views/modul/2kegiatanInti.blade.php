@@ -1,8 +1,21 @@
 <div class="card mt-3">
     <div class="card-body">
-        <h4 class="card-title">Kegiatan Inti</h4>
+        <h4 class="card-title text-center">Kegiatan Inti</h4>
+        {{ json_encode(session()->get('ki_kegiatanInti')) }}
+        @php
+            $x = 0;
+        @endphp
+        @foreach ($res['model'] as $m)
+            <div class="card mb-2">
+                <div class="card-body">
+                    <h5 class="card-title">{{ $m->metode }}</h5>
+                    <textarea name="i_{{ $x }}" id="editor{{ $x }}">
+                    </textarea>
+                    <input type="hidden" name="metode_{{ $x++ }}" value="{{ $m->metode }}">
+                </div>
+            </div>
 
-        <h5>Belum Selesai Lewati terlebih dahulu</h5>
+        @endforeach
 
         <div class="position-relative bottom-0 start-50 translate-middle-x mt-3" style="width:50%">
             <div class="row">
@@ -14,11 +27,17 @@
     </div>
 </div>
 
+
 <script>
-    ClassicEditor
-        .create( document.querySelector( '#editor' ) )
+@php
+    $i = 0;
+@endphp
+@foreach ($res['model'] as $m)
+ClassicEditor
+        .create( document.querySelector( '#editor{{ $i++ }}' ) )
         .catch( error => {
             console.error( error );
         } );
+@endforeach
 </script>
 

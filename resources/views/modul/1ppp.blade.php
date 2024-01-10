@@ -5,7 +5,7 @@
 
         <div class="row g-2 align-items-center ms-5 mb-2 mt-3">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" {{ session()->has('ppp') == 1 ? (session()->get('ppp')[1]['isi'] == '' ? '' : 'checked') : '' }} value="Beriman, Bertakwa kepada Tuhan Yang Maha Esa dan Berakhlak Mulia" id="nj_1" name="nj_1">
+                <input class="form-check-input" type="checkbox" onclick="ck(1)" {{ session()->has('ppp') == 1 ? (session()->get('ppp')[1]['isi'] == '' ? '' : 'checked') : '' }} value="Beriman, Bertakwa kepada Tuhan Yang Maha Esa dan Berakhlak Mulia" id="nj_1" name="nj_1">
                 <label class="form-check-label">
                     Beriman, Bertakwa kepada Tuhan Yang Maha Esa dan Berakhlak Mulia
                 </label>
@@ -24,9 +24,7 @@
                 </label>
             </div>
 
-            <textarea name="i_j2" id="editor2">
-                {{ session()->has('ppp') == 1 ? session()->get('ppp')[2]['isi'] : '' }}
-            </textarea>
+            <textarea name="i_j2" id="editor2">{{ session()->has('ppp') == 1 ? session()->get('ppp')[2]['isi'] : '' }}</textarea>
         </div>
 
         <div class="row g-2 align-items-center ms-5 mb-2 mt-3">
@@ -130,5 +128,6 @@
         .catch( error => {
             console.error( error );
         } );
+
 </script>
 

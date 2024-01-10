@@ -7,9 +7,9 @@
             <div class="card-body">
                 <div class="row g-2 align-items-center ms-5 mb-4">
                     <label class="form-label">Kegiatan 1 : Salam Pembuka</label>
-                    <textarea name="p_1a" class="form-control">
-                        {{ session()->has('ki_p_1a') == 1 ? session()->get('ki_p_1a') : '' }}
-                    </textarea>
+
+                    <textarea name="p_1a" class="form-control">{{ session()->has('ki_pembukaan') == 1 ? (session()->get('in1') == 'p_1a' ? 'hello':'') : '' }}</textarea>
+
                     <div class="mb-3 row mt-2">
                         <label class="col-sm-3 col-form-label">Alokasi Waktu</label>
                         <div class="col-sm-7">
@@ -25,9 +25,9 @@
             <div class="card-body">
                 <div class="row g-2 align-items-center ms-5 mb-4">
                     <label for="exampleFormControlInput1" class="form-label">Kegiatan 2 : Pengkondisian Kelas</label>
-                    <textarea name="p_2a" class="form-control">
-                        {{ session()->has('ki_p_2a') == 1 ? session()->get('ki_p_2a') : '' }}
-                    </textarea>
+
+                    <textarea name="p_2a" class="form-control">{{ session()->has('ki_p_2a') == 1 ? session()->get('ki_p_2a') : '' }}</textarea>
+
                     <div class="mb-3 row mt-2">
                         <label class="col-sm-3 col-form-label">Alokasi Waktu</label>
                         <div class="col-sm-7">
@@ -43,9 +43,9 @@
             <div class="card-body">
                 <div class="row g-2 align-items-center ms-5 mb-4">
                     <label for="exampleFormControlInput1" class="form-label">Kegiatan 3 : Do'a</label>
-                    <textarea name="p_3a" class="form-control">
-                        {{ session()->has('ki_p_3a') == 1 ? session()->get('ki_p_3a') : '' }}
-                    </textarea>
+
+                    <textarea name="p_3a" class="form-control">{{ session()->has('ki_p_3a') == 1 ? session()->get('ki_p_3a') : '' }}</textarea>
+
                     <div class="mb-3 row mt-2">
                         <label class="col-sm-3 col-form-label">Alokasi Waktu</label>
                         <div class="col-sm-7">
@@ -61,9 +61,9 @@
             <div class="card-body">
                 <div class="row g-2 align-items-center ms-5 mb-4">
                     <label for="exampleFormControlInput1" class="form-label">Kegiatan 4 : Presensi</label>
-                    <textarea name="p_4a" class="form-control">
-                        {{ session()->has('ki_p_4a') == 1 ? session()->get('ki_p_4a') : '' }}
-                    </textarea>
+
+                    <textarea name="p_4a" class="form-control">{{ session()->has('ki_p_4a') == 1 ? session()->get('ki_p_4a') : '' }}</textarea>
+
                     <div class="mb-3 row mt-2">
                         <label class="col-sm-3 col-form-label">Alokasi Waktu</label>
                         <div class="col-sm-7">
@@ -79,9 +79,9 @@
             <div class="card-body">
                 <div class="row g-2 align-items-center ms-5 mb-4">
                     <label for="exampleFormControlInput1" class="form-label">Kegiatan 5 : Apersepsi</label>
-                    <textarea name="p_5a" class="form-control">
-                        {{ session()->has('ki_p_5a') == 1 ? session()->get('ki_p_5a') : '' }}
-                    </textarea>
+
+                    <textarea name="p_5a" class="form-control">{{ session()->has('ki_p_5a') == 1 ? session()->get('ki_p_5a') : '' }}</textarea>
+
                     <div class="mb-3 row mt-2">
                         <label class="col-sm-3 col-form-label">Alokasi Waktu</label>
                         <div class="col-sm-7">
@@ -97,9 +97,7 @@
             <div class="card-body">
                 <div class="row g-2 align-items-center ms-5 mb-4">
                     <label for="exampleFormControlInput1" class="form-label">Kegiatan 6 : Motivasi</label>
-                    <textarea name="p_6a" class="form-control">
-                        {{ session()->has('ki_p_6a') == 1 ? session()->get('ki_p_6a') : '' }}
-                    </textarea>
+                    <textarea name="p_6a" class="form-control">{{ session()->has('ki_p_6a') == 1 ? session()->get('ki_p_6a') : '' }}</textarea>
                     <div class="mb-3 row mt-2">
                         <label class="col-sm-3 col-form-label">Alokasi Waktu</label>
                         <div class="col-sm-7">
@@ -115,9 +113,9 @@
             <div class="card-body">
                 <div class="row g-2 align-items-center ms-5 mb-4">
                     <label for="exampleFormControlInput1" class="form-label">Kegiatan 7 : Penyampaian Tujuan Pembelajaran</label>
-                    <textarea name="p_7a" class="form-control">
-                        {{ session()->has('ki_p_7a') == 1 ? session()->get('ki_p_7a') : '' }}
-                    </textarea>
+
+                    <textarea name="p_7a" class="form-control">{{ session()->has('ki_p_7a') == 1 ? session()->get('ki_p_7a') : '' }}</textarea>
+
                     <div class="mb-3 row mt-2">
                         <label class="col-sm-3 col-form-label">Alokasi Waktu</label>
                         <div class="col-sm-7">

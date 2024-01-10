@@ -5,9 +5,9 @@
 @section('isi')
     @include('users.navbarUser')
 
-    <div class="position-absolute top-0 start-50 translate-middle-x mt-3 ms-5">
+    <div class="position-absolute top-0 start-50 translate-middle-x mt-5 ms-2">
 
-        <div class="card" style="width: 50rem">
+        <div class="card" style="width: 55rem">
             <div class="card-body">
                 <h4 class="card-title">Modul Saya</h4>
 

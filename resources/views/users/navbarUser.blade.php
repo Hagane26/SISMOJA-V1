@@ -1,6 +1,8 @@
-<div class="position-fixed top-0 start-0 mt-3" style="width: 15%">
+<div class="position-fixed top-0 start-0 mt-5 ms-3" style="width: 15%">
     <div class="card">
-        <img src="https://www.kemdikbud.go.id/main/files/large/83790f2b43f00be" class="card-img-top" alt="...">
+        <center>
+            <img src="{{ asset('img/unib.png') }}" class="card-img-top mb-1 mt-1" alt="Unib" style="width: 70%;height:70%;">
+        </center>
         <div class="btn-group-vertical" role="group">
 
             <h3 style="margin-left: 15%">

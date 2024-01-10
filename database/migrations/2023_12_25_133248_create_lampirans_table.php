@@ -13,6 +13,18 @@ return new class extends Migration
     {
         Schema::create('lampirans', function (Blueprint $table) {
             $table->id();
+            $table->string('label1')->nullable();
+            $table->text('link1')->nullable();
+
+            $table->string('label2')->nullable();
+            $table->text('link2')->nullable();
+
+            $table->string('label3')->nullable();
+            $table->text('link3')->nullable();
+
+            $table->text('glossarium')->nullable();
+            $table->text('dapus')->nullable();
+
             $table->timestamps();
         });
     }

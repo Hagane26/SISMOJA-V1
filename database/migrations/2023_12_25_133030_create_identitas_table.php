@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('institusi')->nullable();
             $table->string('fase')->nullable();
             $table->string('kelas')->nullable();
-            $table->string('TA')->nullable();
+            $table->string('TAwal')->nullable();
+            $table->string('TAkhir')->nullable();
             $table->string('alokasi_waktu')->nullable();
             $table->timestamps();
         });

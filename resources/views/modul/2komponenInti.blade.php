@@ -4,8 +4,9 @@
 
 @section('isi')
     @include('users.navbarUser')
+    @include('users.stepbar')
 
-    <div class="position-absolute top-0 start-50 translate-middle-x mt-3 ms-5">
+    <div class="position-absolute top-0 start-50 translate-middle-x mt-5 ms-2">
 
         <div class="position-relative mt-4 mb-5">
             <div class="progress" style="height: 5px;">
@@ -33,7 +34,7 @@
 
         <div class="card border-primary" style="width:50rem">
             <div class="card-body">
-                <h4 class="card-title" style="font-weight:bold">Judul Materi : {{ $res['judul'] }}</h4>
+                <h4 class="card-title" style="font-weight:bold">Judul Modul : {{ $res['judul'] }}</h4>
                 <h6 class="card-subtitle"> Komponen Inti </h6>
                 <form action="/modul/buat/{{ $res['aksi'] }}" method="post">
                     @csrf

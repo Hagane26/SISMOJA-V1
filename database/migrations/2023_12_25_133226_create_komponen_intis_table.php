@@ -13,17 +13,15 @@ return new class extends Migration
     {
         Schema::create('komponen_intis', function (Blueprint $table) {
             $table->id();
-            $table->string('Tujuan')->nullable();
+            $table->text('Tujuan')->nullable();
             $table->text('asasmen_diagnostik')->nullable();
             $table->text('asasmen_formatif')->nullable();
             $table->text('asasmen_sumatif')->nullable();
             $table->text('pemahaman_bermakna')->nullable();
-            $table->text('pemahaman_pemantik')->nullable();
+            $table->text('pemantik')->nullable();
             $table->text('refleksi')->nullable();
-            $table->unsignedBigInteger('kegiatan_id')->nullable();
             $table->timestamps();
 
-            $table->foreign('kegiatan_id')->references('id')->on('kegiatan_pembelajarans')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

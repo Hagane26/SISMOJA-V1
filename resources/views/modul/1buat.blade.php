@@ -17,7 +17,7 @@
                     </div>
 
                 @endif
-                <h4 class="card-title">Masukan Judul Materi</h4>
+                <h4 class="card-title">Masukan Judul Modul</h4>
                 <form action="/modul/buat-aksi" method="post">
                     @csrf
                     <input type="text" class="form-control mb-3" name="materi" id="materi">

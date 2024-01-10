@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('model_pembelajarans', function (Blueprint $table) {
+        Schema::create('ki_kegiatans', function (Blueprint $table) {
             $table->id();
             $table->string('metode')->nullable();
-            $table->string('kategori')->nullable();
-            $table->string('btn')->nullable();
-            $table->unsignedBigInteger('informasi_id')->nullable();
+            $table->text('isi')->nullable();
+            $table->string('waktu')->nullable();
+            $table->unsignedBigInteger('ki_id')->nullable();
             $table->timestamps();
+
+            $table->foreign('ki_id')->references('id')->on('komponen_intis')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('model_pembelajarans');
+        Schema::dropIfExists('ki_kegiatans');
     }
 };

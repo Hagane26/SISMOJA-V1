@@ -18,10 +18,10 @@ return new class extends Migration
             $table->text('sarana')->nullable();
             $table->text('prasarana')->nullable();
             $table->string('target')->nullable();
-            $table->unsignedBigInteger('modelPembelajaran_id')->nullable();
+            //$table->unsignedBigInteger('modelPembelajaran_id')->nullable();
             $table->timestamps();
 
-            $table->foreign('modelPembelajaran_id')->references('id')->on('model_pembelajarans')->onDelete('cascade')->onUpdate('cascade');
+            //$table->foreign('modelPembelajaran_id')->references('id')->on('model_pembelajarans')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('identitas_id')->references('id')->on('identitas')->onDelete('cascade')->onUpdate('cascade');
         });
     }
