@@ -1,5 +1,5 @@
 <div class="card mt-3">
-    <div class="card-body">
+    <div class="card-body"> 
         <h4 class="card-title">Profil Pelajar Pancasila </h4>
         <h6 class="card-subtitle bi-info-circle-fill ms-3"> Pilih Minimal 1, Maksimal 6</h6>
 

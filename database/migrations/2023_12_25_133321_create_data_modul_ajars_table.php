@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('komponen_id')->nullable();
             $table->unsignedBigInteger('lampiran_id')->nullable();
             $table->unsignedBigInteger('users_id');
-            $table->char('status',1)->nullable();
+            //$table->char('status',1)->nullable();
             $table->timestamps();
 
             $table->foreign('informasi_id')->references('id')->on('informasi_umums')->onDelete('cascade')->onUpdate('cascade');

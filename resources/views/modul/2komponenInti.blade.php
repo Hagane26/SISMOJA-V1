@@ -6,7 +6,7 @@
     @include('users.navbarUser')
     @include('users.stepbar')
 
-    <div class="position-absolute top-0 start-50 translate-middle-x mt-5 ms-2">
+    <div class="position-absolute top-0 start-50 translate-middle-x mt-3 ms-2">
 
         <div class="position-relative mt-4 mb-5">
             <div class="progress" style="height: 5px;">

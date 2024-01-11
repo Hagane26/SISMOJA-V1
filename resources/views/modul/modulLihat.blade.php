@@ -38,7 +38,7 @@
                             <label class="col-sm-4 col-form-label">Tahun Ajaran</label>
                             <label class="col-sm-1 col-form-label">:</label>
                             <div class="col">
-                                <input type="text" class="form-control" readonly value="{{ $res->data_informasi->identitas->TA }}">
+                                <input type="text" class="form-control" readonly value="{{ $res->data_informasi->identitas->TAawal . $res->data_informasi->identitas->TAkhir }}">
                             </div>
                         </div>
 

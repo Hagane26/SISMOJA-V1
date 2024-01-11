@@ -225,7 +225,7 @@ class ModulAjar_ctrl extends Controller
                 break;
         }
         $s_a = "border-2 border-primary";
-        $s_s = "";
+        $s_s = "bg-success text-white";
         $data = [
             'judul' => $judul->judul,
             'view' => "modul.1". $go,
@@ -281,20 +281,24 @@ class ModulAjar_ctrl extends Controller
                 'mapel' => $req->mapel,
                 'fase' => $req->fase,
                 'kelas' => $req->kelas,
-                'TA' => $req->Ta_awal . "/" . $req->TA_akhir,
+                'TAwal' => $req->Ta_awal,
+                'TAkhir' => $req->TA_akhir,
                 'alokasi_waktu' => $req->waktu,
             ]);
+
+            $stat = session()->get('mod_stat')+1;
+            session(['mod_stat' => $stat]);
+
             $informasi_umum = informasiUmum::create(['identitas_id'=>$parcel->id]);
             dataModulAjar::where('id',session()->get('mod_id'))->update([
                 'informasi_id' => $informasi_umum->id,
             ]);
+
             session(['informasiUmum'=>$informasi_umum]);
             session(['identitas'=>$parcel]);
         }
 
         if($parcel){
-            $stat = session()->get('mod_stat')+1;
-            session(['mod_stat' => $stat]);
             return redirect('/modul/buat/informasi/2');
         }else{
             return redirect()->back()->withErrors('Terjadi Kesalahan Input');
@@ -413,6 +417,29 @@ class ModulAjar_ctrl extends Controller
         }
     }
 
+    public function model_create($s,$i,$val){
+        $parcel = modelPembelajaran::create([
+            'metode' => $val,
+            'kategori' => substr($s,0,2),
+            'btn' => $s . $i,
+            'informasi_id' => session()->get('informasiUmum')['id'],
+        ]);
+        return $parcel;
+    }
+
+    public function model_update($s,$i,$val){
+        $parcel = modelPembelajaran::where('id',session()->get('model')[$i]['id'])->update([
+            'metode' => $val,
+            'kategori' => substr($s,0,2),
+            'informasi_id' => session()->get('informasiUmum')['id'],
+        ]);
+        return $parcel;
+    }
+
+    public function model_newparcel($i){
+        return modelPembelajaran::where('id',session()->get('model')[$i]['id'])->get()->first();
+    }
+
     // :i_model
     public function model_aksi(Request $req){
         $j = count($req->all());
@@ -422,39 +449,23 @@ class ModulAjar_ctrl extends Controller
             for($i = 1;$i<$j;$i++){
                 $s = 'pe-';
                 if($req[$s.$i]){
-                    $parcel = modelPembelajaran::where('id',session()->get('model')[$i]['id'])->update([
-                        'metode' => $req[$s.$i],
-                        'kategori' => substr($s,0,2),
-                        'informasi_id' => session()->get('informasiUmum')['id'],
-                    ]);
-                    $nparcel = modelPembelajaran::where('id',session()->get('model')[$i]['id'])->get()->first();
+                    $parcel = $this->model_update($s,$i,$req[$s.$i]);
+                    $nparcel = $this->model_newparcel($i);
                 }
                 $s = 'mo-';
                 if($req[$s.$i]){
-                    $parcel = modelPembelajaran::where('id',session()->get('model')[$i]['id'])->update([
-                        'metode' => $req[$s.$i],
-                        'kategori' => substr($s,0,2),
-                        'informasi_id' => session()->get('informasiUmum')['id'],
-                    ]);
-                    $nparcel = modelPembelajaran::where('id',session()->get('model')[$i]['id'])->get()->first();
+                    $parcel = $this->model_update($s,$i,$req[$s.$i]);
+                    $nparcel = $this->model_newparcel($i);
                 }
                 $s = 'me-';
                 if($req[$s.$i]){
-                    $parcel = modelPembelajaran::where('id',session()->get('model')[$i]['id'])->update([
-                        'metode' => $req[$s.$i],
-                        'kategori' => substr($s,0,2),
-                        'informasi_id' => session()->get('informasiUmum')['id'],
-                    ]);
-                    $nparcel = modelPembelajaran::where('id',session()->get('model')[$i]['id'])->get()->first();
+                    $parcel = $this->model_update($s,$i,$req[$s.$i]);
+                    $nparcel = $this->model_newparcel($i);
                 }
                 $s = 'te-';
                 if($req[$s.$i]){
-                    $parcel = modelPembelajaran::where('id',session()->get('model')[$i]['id'])->update([
-                        'metode' => $req[$s.$i],
-                        'kategori' => substr($s,0,2),
-                        'informasi_id' => session()->get('informasiUmum')['id'],
-                    ]);
-                    $nparcel = modelPembelajaran::where('id',session()->get('model')[$i]['id'])->get()->first();
+                    $parcel = $this->model_update($s,$i,$req[$s.$i]);
+                    $nparcel = $this->model_newparcel($i);
                 }
                 $data[$i] = [
                     'id' => $nparcel->id,
@@ -467,35 +478,19 @@ class ModulAjar_ctrl extends Controller
             for($i = 1;$i<$j;$i++){
                 $s = 'pe-';
                 if($req[$s.$i]){
-                    $parcel = modelPembelajaran::create([
-                        'metode' => $req[$s.$i],
-                        'kategori' => substr($s,0,2),
-                        'informasi_id' => session()->get('informasiUmum')['id'],
-                    ]);
+                    $parcel = $this->model_create($s,$i,$req[$s.$i]);
                 }
                 $s = 'mo-';
                 if($req[$s.$i]){
-                    $parcel = modelPembelajaran::create([
-                        'metode' => $req[$s.$i],
-                        'kategori' => substr($s,0,2),
-                        'informasi_id' => session()->get('informasiUmum')['id'],
-                    ]);
+                    $parcel = $this->model_create($s,$i,$req[$s.$i]);
                 }
                 $s = 'me-';
                 if($req[$s.$i]){
-                    $parcel = modelPembelajaran::create([
-                        'metode' => $req[$s.$i],
-                        'kategori' => substr($s,0,2),
-                        'informasi_id' => session()->get('informasiUmum')['id'],
-                    ]);
+                    $parcel = $this->model_create($s,$i,$req[$s.$i]);
                 }
                 $s = 'te-';
                 if($req[$s.$i]){
-                    $parcel = modelPembelajaran::create([
-                        'metode' => $req[$s.$i],
-                        'kategori' => substr($s,0,2),
-                        'informasi_id' => session()->get('informasiUmum')['id'],
-                    ]);
+                    $parcel = $this->model_create($s,$i,$req[$s.$i]);
                 }
                 if($parcel){
                     $data[$i] = [
@@ -577,6 +572,9 @@ class ModulAjar_ctrl extends Controller
                 break;
         }
 
+        $s_a = "border-2 border-primary";
+        $s_s = "bg-success text-white";
+
         $data = [
             'judul' => $judul->judul,
             'view' => "modul.2". $go,
@@ -585,6 +583,9 @@ class ModulAjar_ctrl extends Controller
             'aksi' => 'inti/' . $go . '-aksi',
             'pos_s' => $pos * 14.3,
             'model' => $model,
+            'step1' => $s_s,
+            'step2' => $s_a,
+            'step3' => '',
         ];
 
         return view('modul.2komponenInti',['res' => $data]);
@@ -890,7 +891,6 @@ class ModulAjar_ctrl extends Controller
 
         $mod_id = session()->get('mod_id');
         $judul = dataModulAjar::where('id',$mod_id)->get()->first();
-        $model = modelPembelajaran::where('informasi_id',$judul->informasi_id)->get();
 
         if(!is_numeric($step)){
             return redirect()->back();
@@ -914,6 +914,9 @@ class ModulAjar_ctrl extends Controller
                 break;
         }
 
+        $s_a = "border-2 border-primary";
+        $s_s = "bg-success text-white";
+
         $data = [
             'judul' => $judul->judul,
             'view' => "modul.3". $go,
@@ -921,7 +924,9 @@ class ModulAjar_ctrl extends Controller
             'pos' => $pos,
             'aksi' => 'lampiran/' . $go . '-aksi',
             'pos_s' => $pos * 50,
-            'model' => $model,
+            'step1' => $s_s,
+            'step2' => $s_s,
+            'step3' => $s_a,
         ];
 
         return view('modul.3lampiran',['res' => $data]);
@@ -991,5 +996,5 @@ class ModulAjar_ctrl extends Controller
         return redirect('/modul/buat/inti/2');
     }
 
-// 28 function
+// 29 function
 }

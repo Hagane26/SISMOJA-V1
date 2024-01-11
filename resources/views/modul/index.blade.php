@@ -5,7 +5,7 @@
 @section('isi')
     @include('users.navbarUser')
 
-    <div class="position-absolute top-0 start-50 translate-middle-x mt-5 ms-2">
+    <div class="position-absolute top-0 start-50 translate-middle-x mt-3 ms-2">
 
         <div class="card" style="width: 55rem">
             <div class="card-body">

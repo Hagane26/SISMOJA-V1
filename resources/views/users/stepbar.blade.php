@@ -1,4 +1,4 @@
-<div class="position-fixed top-0 end-0 mt-5 ms-2" style="width: 16%">
+<div class="position-fixed top-0 end-0 mt-3 ms-2" style="width: 16%">
     <ul class="list-group">
         <li class="list-group-item d-flex justify-content-between align-items-center {{ $res['step1'] }}">
           Informasi Umum

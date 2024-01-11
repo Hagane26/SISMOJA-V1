@@ -4,7 +4,6 @@
 
 @section('isi')
     @include('users.navbarUser')
-    @include('users.stepbar')
 
     <div class="position-absolute top-0 start-50 translate-middle-x mt-5 ms-2">
         <div class="card border-primary" style="width:55rem">
