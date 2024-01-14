@@ -184,8 +184,7 @@ class ModulAjar_ctrl extends Controller
                 'status' => 0,
             ]);
             if($parcel){
-                $i_identitas = identitas::create();
-                $i_umum = informasiUmum::create('identitas_id');
+
                 session(['mod_id' => $parcel->id]);
                 session(['mod_stat' => 0]);
                 //echo $this->mod_id;
@@ -268,6 +267,7 @@ class ModulAjar_ctrl extends Controller
         ],[
             //untuk custom pesan gagal nya
             'penyusun.required' => "Nama Penyusun Kosong",
+            'institusi.required' => "Institusi Kosong",
         ]);
         if ($req->mapel == 0){
             return redirect()->back()->withErrors('Mapel Kosong');
@@ -385,11 +385,15 @@ class ModulAjar_ctrl extends Controller
 
     // :i_sarana
     public function sarana_aksi(Request $req){
-        if($req->sarana == '' || $req->prasarana == ''){
-            return redirect()->back()->withErrors('Isi Salah Satu');
-        }else{
+        $req->validate([
+            'sarana' => 'required',
+            'prasarana' => 'required',
+        ],[
+            'sarana.required' => 'm',
+            'prasarana.required' => 'hoy'
+        ]);
 
-            $parcel = informasiUmum::where('id',session()->get('informasiUmum')['id'])->update(
+        $parcel = informasiUmum::where('id',session()->get('informasiUmum')['id'])->update(
             [
                 'sarana'=> $req->sarana,
                 'prasarana' => $req->prasarana,
@@ -405,28 +409,32 @@ class ModulAjar_ctrl extends Controller
             }else{
                 return redirect()->back()->withErrors('Terjadi Kesalahan Input');
             }
-        }
     }
 
     // :i_target
     public function target_aksi(Request $req){
-        if($req->tpd == ''){
-            return redirect()->back()->withErrors('Silahkan Diisi!');
+
+        $req->validate(
+            [
+                'tpd' => 'required',
+            ],[
+                'tpd.required' => 'isi target'
+            ]
+        );
+
+        $parcel = informasiUmum::where('id',session()->get('informasiUmum')['id'])->update([
+            'target'=> $req->tpd
+        ]);
+        if($parcel){
+            $nparcel = informasiUmum::where('id',session()->get('informasiUmum')['id'])->get()->first();
+            session(['tpd'=> $req->tpd]);
+            session(['informasiUmum'=>$nparcel]);
+            $stat = session()->get('mod_stat')+1;
+            session(['mod_stat' => $stat]);
+            session()->forget('model');
+            return redirect('/modul/buat/informasi/6');
         }else{
-            $parcel = informasiUmum::where('id',session()->get('informasiUmum')['id'])->update([
-                'target'=> $req->tpd
-            ]);
-            if($parcel){
-                $nparcel = informasiUmum::where('id',session()->get('informasiUmum')['id'])->get()->first();
-                session(['tpd'=> $req->tpd]);
-                session(['informasiUmum'=>$nparcel]);
-                $stat = session()->get('mod_stat')+1;
-                session(['mod_stat' => $stat]);
-                session()->forget('model');
-                return redirect('/modul/buat/informasi/6');
-            }else{
-                return redirect()->back()->withErrors('Terjadi Kesalahan Input');
-            }
+            return redirect()->back()->withErrors('Terjadi Kesalahan Input');
         }
     }
 
@@ -627,7 +635,9 @@ class ModulAjar_ctrl extends Controller
     // :ki_asesmen
     public function asesmen_aksi(Request $req){
 
-
+        if($req->a_d == '' && $req->a_f == '' && $req->a_s == ''){
+            return redirect()->back()->withErrors('Isi Salah Satu Asesmen');
+        }
 
         $data = dataModulAjar::where('id',session()->get('mod_id'))->first();
         $ki_id = $data->komponen_id;
@@ -646,6 +656,8 @@ class ModulAjar_ctrl extends Controller
     public function pemahaman_aksi(Request $req){
         $data = $req->validate([
             'pemahaman' => 'required',
+        ],[
+            'pemahaman.required' => 'mohon di isi box pemahaman bermakna'
         ]);
 
         $data = dataModulAjar::where('id',session()->get('mod_id'))->first();
@@ -661,6 +673,8 @@ class ModulAjar_ctrl extends Controller
     public function pemantik_aksi(Request $req){
         $data = $req->validate([
             'pemantik' => 'required',
+        ],[
+
         ]);
 
         $data = dataModulAjar::where('id',session()->get('mod_id'))->first();
@@ -675,6 +689,8 @@ class ModulAjar_ctrl extends Controller
 
     // :ki_pembukaan
     public function pembukaan_aksi(Request $req){
+        // untuk a adalah isi pembuka
+        // untuk b adalah alokasi waktu
         $data = $req->validate([
             'p_1a' => 'required',
             'p_2a' => 'required',
@@ -691,6 +707,9 @@ class ModulAjar_ctrl extends Controller
             'p_5b' => 'required',
             'p_6b' => 'required',
             'p_7b' => 'required',
+        ],[
+            'p_1a.required' => 'Mohon isi Kegiatan 1 di Salam Pembuka',
+            ''
         ]);
 
         $data = dataModulAjar::where('id',session()->get('mod_id'))->first();
@@ -830,6 +849,8 @@ class ModulAjar_ctrl extends Controller
             'p_3b' => 'required',
             'p_4b' => 'required',
             'p_5b' => 'required',
+        ],[
+
         ]);
 
         $data = dataModulAjar::where('id',session()->get('mod_id'))->first();
@@ -899,6 +920,8 @@ class ModulAjar_ctrl extends Controller
     public function refleksi_aksi(Request $req){
         $data = $req->validate([
             'i_1' => 'required',
+        ],[
+            'i_1.required' => '',
         ]);
 
         $data = dataModulAjar::where('id',session()->get('mod_id'))->first();
@@ -986,8 +1009,9 @@ class ModulAjar_ctrl extends Controller
             'BB' => 'required|mimes:pdf,doc,docx|max:5048',
             'PR' => 'required|mimes:pdf,doc,docx|max:5048',
         ],[
-            'LKPD.mimes' => "Ukuran Melebihi 5MB",
+            'LKPD.mimes' => "File Bukan Berformat PDF",
             'LKPD.max' => "Ukuran Melebihi 5MB",
+            'BB.max' => "Ukuran Melebihi 5MB",
         ]);
 
 
@@ -1029,6 +1053,8 @@ class ModulAjar_ctrl extends Controller
     public function lampiran3_aksi(Request $req){
         $data = $req->validate([
             'dapus' => 'required',
+        ],[
+            'dapus.required' => 'Daftar Pustaka Masih Kosong, Harap Diisi Terlebih Dahulu!',
         ]);
 
         $l_id = session()->get('l_id');
