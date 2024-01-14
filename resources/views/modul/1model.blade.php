@@ -7,14 +7,14 @@
 
             <div class="row">
                 <div class="form-check col-3 mb-3">
-                    <input class="form-check-input" type="checkbox" value="Berdiferensiasi" id="pe-1" name="pe-1" {{ session()->has('model') == 1 ? (session()->get('model')[1]['id_tl'] == 'pe-1' ? 'checked' : '') : '' }}>
+                    <input class="form-check-input" type="checkbox" value="Berdiferensiasi" id="pe-1" name="pe-1">
                     <label class="form-check-label">
                         Berdiferensiasi
                     </label>
                 </div>
 
                 <div class="form-check col-3 mb-3">
-                    <input class="form-check-input" type="checkbox" value="Genre-Based Approach" id="pe-2" name="pe-2" {{ session()->has('model') == 1 ? (session()->get('model')[2]['id_tl'] == 'pe-2' ? 'checked' : '') : '' }} >
+                    <input class="form-check-input" type="checkbox" value="Genre-Based Approach" id="pe-2" name="pe-2">
                     <label class="form-check-label">
                         Genre-Based Approach
                     </label>
@@ -158,4 +158,3 @@
 
     </div>
 </div>
-{{ session()->has('model') == 1 ? (session()->has('model.1') == 1 ? 'checked' : '') : '' }}

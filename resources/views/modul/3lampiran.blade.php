@@ -31,7 +31,7 @@
             <div class="card-body">
                 <h4 class="card-title" style="font-weight:bold">Judul Modul : {{ $res['judul'] }}</h4>
                 <h6 class="card-subtitle"> Komponen Inti </h6>
-                <form action="/modul/buat/{{ $res['aksi'] }}" method="post">
+                <form action="/modul/buat/{{ $res['aksi'] }}" method="post" {{ $res['s_upload'] }}>
                     @csrf
                     @include($res['view'])
                 </form>

@@ -127,21 +127,21 @@
                     </div>
                 </div>
 
-                <!-- -->
-                <div class="card mt-2">
-                    <div class="card-header fw-bold">
-                    D. TARGET PESERTA DIDIK
-                    </div>
-                    <div class="card-body">
-
-                        <div class="form-control">
-                            @php
-                                echo $res->data_informasi->target;
-                            @endphp
+                    <!-- -->
+                    <div class="card mt-2">
+                        <div class="card-header fw-bold">
+                        D. TARGET PESERTA DIDIK
                         </div>
+                        <div class="card-body">
 
+                            <div class="form-control">
+                                @php
+                                    echo $res->data_informasi->target;
+                                @endphp
+                            </div>
+
+                        </div>
                     </div>
-                </div>
 
                 <!-- -->
                 <div class="card mt-2">
@@ -361,6 +361,72 @@
 
                             </div>
                         </div>
+
+                    </div>
+                </div>
+
+                <!-- -->
+                <div class="card mt-2">
+                    <div class="card-header fw-bold">
+                    K. Lampiran
+                    </div>
+                    <div class="card-body">
+
+
+                        <div class="card mb-4 border-2 border-primary">
+                            <div class="card-body">
+                                <center><h5 class="card-title">Lampiran LKPD</h5></center>
+                                <div class="ratio ratio-16x9">
+                                    <embed src="{{ asset('lampiran/' . $res['users_id'] .'/' . $res['id'] .'/' . 'L1.pdf ') }}"
+                                    width="800"
+                                    height="500">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-4 border-2 border-primary">
+                            <div class="card-body">
+                                <center><h5 class="card-title">Pengayaan Dan Remedial</h5></center>
+                                <div class="ratio ratio-16x9">
+                                    <embed src="{{ asset('lampiran/' . $res['users_id'] .'/' . $res['id'] .'/' . 'L2.pdf ') }}"
+                                    width="800"
+                                    height="500">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-4 border-2 border-primary">
+                            <div class="card-body">
+                                <center><h5 class="card-title">Bahan Bacaan Peserta Didik dan Pendidik</h5></center>
+                                <div class="ratio ratio-16x9">
+                                    <embed src="{{ asset('lampiran/' . $res['users_id'] .'/' . $res['id'] .'/' . 'L3.pdf ') }}"
+                                    width="800"
+                                    height="500">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- -->
+                <div class="card mt-2">
+                    <div class="card-header fw-bold">
+                        L. Glossarium
+                    </div>
+                    <div class="card-body">
+
+
+                    </div>
+                </div>
+
+                <!-- -->
+                <div class="card mt-2">
+                    <div class="card-header fw-bold">
+                        M. Daftar Pustaka
+                    </div>
+                    <div class="card-body">
+
 
                     </div>
                 </div>

@@ -18,6 +18,7 @@ class register_ctrl extends Controller
 
     public function store(Request $request)
     {
+        session()->flush();
         $pass = $request->password;
         $cpass = $request->passwordC;
         $email = $request->email;

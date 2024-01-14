@@ -1,7 +1,7 @@
 <div class="card mt-3">
     <div class="card-body">
         <h4 class="card-title text-center">Kegiatan Inti</h4>
-        {{ json_encode(session()->get('ki_kegiatanInti')) }}
+        
         @php
             $x = 0;
         @endphp

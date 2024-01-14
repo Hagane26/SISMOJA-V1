@@ -69,7 +69,7 @@ Route::middleware('auth')->group(function(){
     route::post('/modul/buat/inti/refleksi-aksi',[ModulAjar_ctrl::class,'refleksi_aksi']);
     route::get('/modul/buat/2/selesai',[ModulAjar_ctrl::class,'inti_selesai']);
 
-    route::get('/modul/buat/3/{step}',[ModulAjar_ctrl::class,'lampiran']);
+    route::get('/modul/buat/lampiran/{step}',[ModulAjar_ctrl::class,'lampiran']);
     route::post('/modul/buat/lampiran/lampiran1-aksi',[ModulAjar_ctrl::class,'lampiran1_aksi']);
     route::post('/modul/buat/lampiran/lampiran2-aksi',[ModulAjar_ctrl::class,'lampiran2_aksi']);
     route::post('/modul/buat/lampiran/lampiran3-aksi',[ModulAjar_ctrl::class,'lampiran3_aksi']);
@@ -77,4 +77,6 @@ Route::middleware('auth')->group(function(){
 
     route::post('/modul/lihat', [ModulAjar_ctrl::class,'lihat_modul']);
     route::post('/modul/hapus', [ModulAjar_ctrl::class,'hapus_modul']);
+
+    route::get('/pdf/{user}/{mod}/{s}',[ModulAjar_ctrl::class,'l_pdf']);
 });

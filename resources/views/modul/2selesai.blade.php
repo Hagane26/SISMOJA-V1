@@ -10,7 +10,7 @@
             <div class="card-body">
 
                 <h4 class="card-title">Komponen Inti Selesai</h4>
-                <a href="/lampiran" class="btn btn-success">Lampiran</a>
+                <a href="/modul/buat/lampiran/1" class="btn btn-success">Lampiran</a>
             </div>
         </div>
 
